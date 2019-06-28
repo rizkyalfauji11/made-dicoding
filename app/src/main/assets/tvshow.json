@@ -1,0 +1,47 @@
+{
+  "movies":[
+    {
+      "id":"1",
+      "title":"Arrow",
+      "desc":"Spoiled billionaire playboy Oliver Queen is missing and presumed dead when his yacht is lost at sea. He returns five years later a changed man, determined to clean up the city as a hooded vigilante armed with a bow.",
+      "year":"2012",
+      "rating":"5.8",
+      "lengthOfTime": "50",
+      "photo":"poster_arrow",
+      "crew":[
+        {
+          "name":"Greg Berlanti",
+          "job":"Creator"
+        },
+        {
+          "name":"Marc Guggenheim",
+          "job":"Creator"
+        },
+        {
+          "name":"Andrew Kreisberg",
+          "job":"Creator"
+        }
+      ]
+    },
+    {
+      "id":"2",
+      "title":"Dragon ball",
+      "desc":"Long ago in the mountains, a fighting master known as Gohan discovered a strange boy whom he named Goku. Gohan raised him and trained Goku in martial arts until he died. The young and very strong boy was on his own, but easily managed. Then one day, Goku met a teenage girl named Bulma, whose search for the dragon balls brought her to Goku's home. Together, they set off to find all seven dragon balls in an adventure that would change Goku's life forever. See how Goku met his life long friends Bulma, Yamcha, Krillin, Master Roshi and more. And see his adventures as a boy, all leading up to Dragonball Z and later Dragonball GT.",
+      "year":"1986",
+      "rating":"7.2",
+      "lengthOfTime": "50",
+      "photo":"poster_dragon_ball",
+      "crew":[]
+    },
+    {
+      "id":"3",
+      "title":"Naruto Shipudden",
+      "desc":"Naruto Shippuuden is the continuation of the original animated TV series Naruto.The story revolves around an older and slightly more matured Uzumaki Naruto and his quest to save his friend Uchiha Sasuke from the grips of the snake-like Shinobi, Orochimaru. After 2 and a half years Naruto finally returns to his village of Konoha, and sets about putting his ambitions to work, though it will not be easy, as He has amassed a few (more dangerous) enemies, in the likes of the shinobi organization; Akatsuki.",
+      "year":"2007",
+      "rating":"5.8",
+      "lengthOfTime": "50",
+      "photo":"poster_naruto_shipudden",
+      "crew":[]
+    }
+  ]
+}

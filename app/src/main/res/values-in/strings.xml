@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Alpha Made</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="this_profile">Ini activity Profile</string>
+    <string name="this_category">Ini fragment Category</string>
+    <string name="category_lifestyle">Ke fragment Lifestyle</string>
+    <string name="category_name">Category Name</string>
+    <string name="category_description">Category Description</string>
+    <string name="to_profile">Ke Halaman Profile Activity</string>
+    <string name="show_dialog">Tampilkan sebuah dialog</string>
+    <string name="hello_home_fragment">Hello Ini Home Fragment</string>
+    <string name="to_category">Ke fragment Category</string>
+    <string name="question_coach">Siapa pelatih tersukses Machester United?</string>
+    <string name="sir_alex_ferguson">Sir Alex Ferguson</string>
+    <string name="jose_mourinho">Jose Mourinho</string>
+    <string name="louis_van_gaal">Louis Van Gaal</string>
+    <string name="david_moyes">David Moyes</string>
+    <string name="choose">Pilih</string>
+    <string name="close">Tutup</string>
+    <string name="year">2019</string>
+    <string name="desc_exp">As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.</string>
+    <string name="now_showing">Now showing</string>
+    <string name="cover_detail">Cover Detail Movie</string>
+    <string name="minutes">2h 1m</string>
+    <string name="feature_crew">Feature Crew</string>
+    <string name="movies">movies.json</string>
+    <string name="tv_show">tvshow.json</string>
+
+    <string name="change_language_settings">Ubah Pengaturan Bahasa</string>
+    <string name="recommended_movies">Film Rekomendasi</string>
+    <string name="string_movie">Film</string>
+    <string name="string_tv_show">Acara TV</string>
+    <string name="length_time">%1$s menit</string>
+    <string name="overview">Ikhtisar</string>
+</resources>
