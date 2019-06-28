@@ -232,6 +232,36 @@
           "job":"Director"
         }
       ]
+    },
+    {
+      "id":"8",
+      "title":"Avengers: Infinity War",
+      "desc":"Ketika Avengers dan sekutu mereka terus melindungi dunia dari ancaman yang terlalu besar untuk ditangani oleh satu pahlawan, bahaya baru telah muncul dari bayang-bayang kosmik: Thanos. Seorang lalim penghinaan intergalaksi, tujuannya adalah untuk mengumpulkan semua enam Batu Infinity, artefak kekuatan tak terbayangkan, dan menggunakannya untuk menimbulkan keinginannya yang terpelintir pada semua kenyataan. Segala yang Avengers telah perjuangkan telah mengarah ke saat ini - nasib Bumi dan keberadaannya sendiri tidak pernah lebih pasti.",
+      "year":"2018",
+      "rating":"8.3",
+      "lengthOfTime": "160",
+      "photo":"poster_avengerinfinity",
+      "crew":[]
+    },
+    {
+      "id":"9",
+      "title":"Deadpool 2",
+      "desc":"\nDeadpool tentara bayaran penyihir bertempur melawan Cable jahat dan kuat dan orang jahat lainnya untuk menyelamatkan hidup anak laki-laki.",
+      "year":"2018",
+      "rating":"7.5",
+      "lengthOfTime": "134",
+      "photo":"poster_deadpool",
+      "crew":[]
+    },
+    {
+      "id":"10",
+      "title":"Bird Box",
+      "desc":"\nLima tahun setelah kehadiran tak terlihat yang tak menyenangkan membuat sebagian besar masyarakat bunuh diri, seorang yang selamat dan dua anaknya melakukan upaya putus asa untuk mencapai keselamatan.",
+      "year":"2018",
+      "rating":"7.0",
+      "lengthOfTime": "124",
+      "photo":"poster_deadpool",
+      "crew":[]
     }
   ]
 }

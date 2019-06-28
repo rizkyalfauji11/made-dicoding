@@ -47,7 +47,6 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
         return fragment;
     }
 
-    private RecyclerView lvMovie;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        lvMovie = view.findViewById(R.id.lv_movie);
+        RecyclerView lvMovie = view.findViewById(R.id.lv_movie);
         movies = new ArrayList<>();
         movieAdapter = new RecycleMovieListAdapter(requireContext(), movies, new RecycleMovieListAdapter.OnItemClickListener() {
             @Override

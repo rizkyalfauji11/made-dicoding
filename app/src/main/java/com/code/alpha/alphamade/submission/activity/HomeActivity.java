@@ -65,19 +65,4 @@ public class HomeActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-    public void addFragment(Fragment fragment){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.frame_container, fragment, fragment.getClass().getSimpleName());
-        fragmentTransaction.commit();
-    }
-
-    public void replaceFragment(Fragment fragment){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_container, fragment, fragment.getClass().getSimpleName());
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
 }
