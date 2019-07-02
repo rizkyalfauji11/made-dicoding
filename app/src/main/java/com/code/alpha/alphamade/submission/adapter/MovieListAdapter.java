@@ -1,7 +1,6 @@
 package com.code.alpha.alphamade.submission.adapter;
 
 import android.content.Context;
-import android.media.Rating;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,6 @@ import com.code.alpha.alphamade.submission.model.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class MovieListAdapter extends BaseAdapter {
     private Context context;
@@ -49,13 +46,13 @@ public class MovieListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null){
+        if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
 
         }
 
         ViewHolder viewHolder = new ViewHolder(convertView);
-        Movie movie = (Movie)getItem(position);
+        Movie movie = (Movie) getItem(position);
         viewHolder.bind(movie);
 
         return convertView;
@@ -66,7 +63,7 @@ public class MovieListAdapter extends BaseAdapter {
         private RatingBar rating;
         private ImageView cover;
 
-        ViewHolder (View view){
+        ViewHolder(View view) {
             title = view.findViewById(R.id.title);
             body = view.findViewById(R.id.body);
             year = view.findViewById(R.id.year);
@@ -74,12 +71,12 @@ public class MovieListAdapter extends BaseAdapter {
             cover = view.findViewById(R.id.cover);
         }
 
-        void bind(Movie movie){
+        void bind(Movie movie) {
             title.setText(movie.getName());
 
             body.setText(movie.getDescription());
             year.setText(movie.getYear());
-            rating.setRating(Float.parseFloat(String.valueOf(Float.valueOf(movie.getRating())/2)));
+            rating.setRating(Float.parseFloat(String.valueOf(Float.valueOf(movie.getRating()) / 2)));
             int imgId = context.getResources().getIdentifier(movie.getImage(), Constant.drawable, context.getPackageName());
             Picasso.get().load(imgId).into(cover);
         }

@@ -1,18 +1,14 @@
 package com.code.alpha.alphamade.submission.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import com.code.alpha.alphamade.R;
 import com.code.alpha.alphamade.submission.adapter.MadeViewPagerAdapter;
@@ -40,11 +36,11 @@ public class HomeActivity extends AppCompatActivity {
         MadeViewPagerAdapter tabAdapter = new MadeViewPagerAdapter(getSupportFragmentManager(), 1);
         tabAdapter.addFragment(
                 MovieListFragment.newInstance(
-                        R.raw.movies
+                        Constant.movie
                 ), getResources().getString(R.string.string_movie));
         tabAdapter.addFragment(
                 MovieListFragment.newInstance(
-                        R.raw.tvshow
+                        Constant.tv
                 ), getResources().getString(R.string.string_tv_show));
         viewPager.setAdapter(tabAdapter);
         tabMenu.setupWithViewPager(viewPager);

@@ -1,13 +1,12 @@
-package com.code.alpha.alphamade.submission.fragment.movielist;
+package com.code.alpha.alphamade.submission.fragment.detailmovie;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.code.alpha.alphamade.submission.connection.MainServices;
-import com.code.alpha.alphamade.submission.model.Constant;
-import com.code.alpha.alphamade.submission.model.MoviesResult;
-import com.code.alpha.alphamade.submission.model.NewMovieModel;
+import com.code.alpha.alphamade.submission.model.DetailMovieResult;
+import com.code.alpha.alphamade.submission.model.ProductionCompany;
 
 import java.util.ArrayList;
 
@@ -16,25 +15,25 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class MovieListPresenter extends ViewModel implements MovieListContract.Presenter {
+public class DetailMoviePresenter extends ViewModel implements DetailMovieContract.Presenter {
 
-    private MutableLiveData<ArrayList<NewMovieModel>> listMovies = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<ProductionCompany>> listMovies = new MutableLiveData<>();
 
     @Override
-    public void getMovies(String url, final MovieListContract.View listener, MainServices service) {
+    public void getDetailMovies(String type, String url, final DetailMovieContract.View listener, MainServices service) {
         listener.showLoading(true);
-        service.getMovies(Constant.discover + "/" + url)
+        service.getDetailMovies(type + "/" + url)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<MoviesResult>() {
+                .subscribe(new Observer<DetailMovieResult>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(MoviesResult moviesResult) {
-                        listMovies.postValue(moviesResult.getResults());
+                    public void onNext(DetailMovieResult detailMovieResult) {
+                        listMovies.postValue(detailMovieResult.getProductionCompanies());
                     }
 
                     @Override
@@ -50,7 +49,7 @@ public class MovieListPresenter extends ViewModel implements MovieListContract.P
                 });
     }
 
-    LiveData<ArrayList<NewMovieModel>> getLiveData() {
+    LiveData<ArrayList<ProductionCompany>> getLiveData() {
         return listMovies;
     }
 }

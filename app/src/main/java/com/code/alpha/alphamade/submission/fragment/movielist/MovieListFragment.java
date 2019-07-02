@@ -2,47 +2,39 @@ package com.code.alpha.alphamade.submission.fragment.movielist;
 
 
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-
+import com.code.alpha.alphamade.BuildConfig;
 import com.code.alpha.alphamade.R;
 import com.code.alpha.alphamade.submission.activity.DetailMovieActivity;
-import com.code.alpha.alphamade.submission.activity.HomeActivity;
-import com.code.alpha.alphamade.submission.adapter.MovieListAdapter;
 import com.code.alpha.alphamade.submission.adapter.RecycleMovieListAdapter;
-import com.code.alpha.alphamade.submission.fragment.detailmovie.DetailMovieFragment;
+import com.code.alpha.alphamade.submission.connection.ApiService;
 import com.code.alpha.alphamade.submission.model.Constant;
-import com.code.alpha.alphamade.submission.model.Movie;
-import com.code.alpha.alphamade.submission.model.Movies;
+import com.code.alpha.alphamade.submission.model.NewMovieModel;
 import com.code.alpha.alphamade.submission.utils.SpacesItemDecoration;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class MovieListFragment extends Fragment implements MovieListContract.View{
+public class MovieListFragment extends Fragment implements MovieListContract.View {
 
 
-    public static MovieListFragment newInstance(int type) {
+    public static MovieListFragment newInstance(String type) {
         MovieListFragment fragment = new MovieListFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(Constant.type, type);
+        bundle.putString(Constant.type, type);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -54,37 +46,60 @@ public class MovieListFragment extends Fragment implements MovieListContract.Vie
     }
 
     private RecycleMovieListAdapter movieAdapter;
-    private ArrayList<Movie> movies;
-    private MovieListPresenter presenter;
+    private ArrayList<NewMovieModel> movies = new ArrayList<>();
+    private ProgressBar progressBar;
+    private RecyclerView lvMovie;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView lvMovie = view.findViewById(R.id.lv_movie);
-        movies = new ArrayList<>();
+        lvMovie = view.findViewById(R.id.lv_movie);
+        progressBar = view.findViewById(R.id.progress_bar);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         movieAdapter = new RecycleMovieListAdapter(requireContext(), movies, new RecycleMovieListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(Movie item) {
+            public void onItemClick(NewMovieModel item) {
                 Intent intent = new Intent(getActivity(), DetailMovieActivity.class);
                 intent.putExtra(Constant.movie, item);
+                intent.putExtra(Constant.type, getArguments().getString(Constant.type));
                 startActivity(intent);
             }
         });
         lvMovie.addItemDecoration(new SpacesItemDecoration(16));
         lvMovie.setLayoutManager(new LinearLayoutManager(requireContext()));
         lvMovie.setAdapter(movieAdapter);
-        presenter = new MovieListPresenter(requireContext(), this);
+        MovieListPresenter presenter = ViewModelProviders.of(this).get(MovieListPresenter.class);
+        String url = String.format(getResources().getString(R.string.url_data),
+                getArguments() != null ? getArguments().getString(Constant.type) : null, BuildConfig.API_KEY);
+        if (movies.size() == 0)
+            presenter.getMovies(url, this, ApiService.getServices(requireContext()));
+        presenter.getLiveData().observe(this, getMovies);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        presenter.getJsonMovies(getArguments() != null ? getArguments().getInt(Constant.type) : 0);
+    public void showLoading(Boolean show) {
+        if (show) progressBar.setVisibility(View.VISIBLE);
+        else progressBar.setVisibility(View.GONE);
     }
 
     @Override
-    public void showJsonMovies(Movies data) {
-        movies.clear();
-        movies.addAll(data.movies);
-        movieAdapter.notifyDataSetChanged();
+    public void showToast(String msg) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show();
     }
+
+    private Observer<ArrayList<NewMovieModel>> getMovies = new Observer<ArrayList<NewMovieModel>>() {
+        @Override
+        public void onChanged(ArrayList<NewMovieModel> models) {
+            if (models != null) {
+                movies.addAll(models);
+                movieAdapter.notifyDataSetChanged();
+                showLoading(false);
+            }
+        }
+    };
+
 }

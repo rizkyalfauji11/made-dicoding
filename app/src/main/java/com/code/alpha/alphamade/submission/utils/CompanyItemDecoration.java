@@ -6,10 +6,10 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
+public class CompanyItemDecoration extends RecyclerView.ItemDecoration {
     private int space;
 
-    public SpacesItemDecoration(int space) {
+    public CompanyItemDecoration(int space) {
         this.space = space;
     }
 
@@ -19,11 +19,7 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
                                @NonNull RecyclerView parent,
                                @NonNull RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
-        if (parent.getChildLayoutPosition(view) == 0) {
-            outRect.top = space * 2;
-        } else {
-            outRect.top = space;
-        }
+        outRect.left = space;
 
     }
 }

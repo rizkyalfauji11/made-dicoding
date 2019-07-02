@@ -1,16 +1,15 @@
 package com.code.alpha.alphamade.submission.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.WindowManager;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.code.alpha.alphamade.R;
 import com.code.alpha.alphamade.submission.fragment.detailmovie.DetailMovieFragment;
@@ -37,6 +36,7 @@ public class DetailMovieActivity extends AppCompatActivity {
         DetailMovieFragment fragment = new DetailMovieFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelable(Constant.movie, intent.getParcelableExtra(Constant.movie));
+        bundle.putString(Constant.type, intent.getStringExtra(Constant.type));
         fragment.setArguments(bundle);
         addFragment(fragment);
     }

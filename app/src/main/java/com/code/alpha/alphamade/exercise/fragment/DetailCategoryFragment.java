@@ -24,14 +24,14 @@ import com.code.alpha.alphamade.exercise.dialog.OptionDialogFragment;
 public class DetailCategoryFragment extends Fragment implements View.OnClickListener{
 
 
-    public static String EXTRA_NAME = "extra_name";
+    static String EXTRA_NAME = "extra_name";
     public static String EXTRA_DESCRIPTION = "extra_description";
     private String description;
 
-    public String getDescription() {
+    private String getDescription() {
         return description;
     }
-    public void setDescription(String description) {
+    void setDescription(String description) {
         this.description = description;
     }
 
@@ -40,8 +40,6 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
 
     private TextView tvCategoryName;
     private TextView tvCategoryDescription;
-    private Button btnProfile;
-    private Button btnShowDialog;
 
     public OptionDialogFragment.OnOptionDialogListener optionDialogListener = new OptionDialogFragment.OnOptionDialogListener() {
         @Override
@@ -61,9 +59,9 @@ public class DetailCategoryFragment extends Fragment implements View.OnClickList
         super.onViewCreated(view, savedInstanceState);
         tvCategoryName = view.findViewById(R.id.tv_category_name);
         tvCategoryDescription = view.findViewById(R.id.tv_category_description);
-        btnProfile = view.findViewById(R.id.btn_profile);
+        Button btnProfile = view.findViewById(R.id.btn_profile);
         btnProfile.setOnClickListener(this);
-        btnShowDialog = view.findViewById(R.id.btn_show_dialog);
+        Button btnShowDialog = view.findViewById(R.id.btn_show_dialog);
         btnShowDialog.setOnClickListener(this);
     }
 

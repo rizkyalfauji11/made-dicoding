@@ -1,5 +1,6 @@
 package com.code.alpha.alphamade.submission.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.code.alpha.alphamade.BuildConfig;
 import com.code.alpha.alphamade.R;
-import com.code.alpha.alphamade.submission.model.Constant;
-import com.code.alpha.alphamade.submission.model.Movie;
+import com.code.alpha.alphamade.submission.model.NewMovieModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,9 +22,10 @@ import java.util.ArrayList;
 public class RecycleMovieListAdapter extends RecyclerView.Adapter<RecycleMovieListAdapter.ViewHolder> {
 
     private Context ctx;
-    private ArrayList<Movie> list;
+    private ArrayList<NewMovieModel> list;
     private final OnItemClickListener listener;
-    public RecycleMovieListAdapter(Context ctx, ArrayList<Movie> list, OnItemClickListener listener) {
+
+    public RecycleMovieListAdapter(Context ctx, ArrayList<NewMovieModel> list, OnItemClickListener listener) {
         this.ctx = ctx;
         this.listener = listener;
         this.list = list;
@@ -51,6 +53,7 @@ public class RecycleMovieListAdapter extends RecyclerView.Adapter<RecycleMovieLi
         private TextView title, body, year;
         private RatingBar rating;
         private ImageView cover;
+
         ViewHolder(@NonNull View view) {
             super(view);
             title = view.findViewById(R.id.title);
@@ -60,14 +63,21 @@ public class RecycleMovieListAdapter extends RecyclerView.Adapter<RecycleMovieLi
             cover = view.findViewById(R.id.cover);
         }
 
-        void bind(final Movie movie){
-            title.setText(movie.getName());
-            body.setText(movie.getDescription());
-            year.setText(movie.getYear());
-            rating.setRating(Float.parseFloat(String.valueOf(Float.valueOf(movie.getRating())/2)));
-            int imgId = ctx.getResources().getIdentifier(movie.getImage(), Constant.drawable, ctx.getPackageName());
-            Picasso.get().load(imgId).resize(150, 200).into(cover);
+        @SuppressLint("SetTextI18n")
+        void bind(final NewMovieModel movie) {
+            if (movie.getTitle() != null) {
+                title.setText(movie.getTitle());
+                year.setText(movie.getReleaseDate());
+            } else {
+                title.setText(movie.getOriginalName());
+                year.setText(movie.getFirstAirDate());
+            }
 
+
+            body.setText((movie.getVoteCount()) + " " + ctx.getResources().getString(R.string.vote));
+
+            rating.setRating((float) (movie.getVoteAverage() / 2));
+            Picasso.get().load(BuildConfig.BASE_IMAGE_URL + movie.getPosterPath()).resize(200, 300).into(cover);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -78,6 +88,6 @@ public class RecycleMovieListAdapter extends RecyclerView.Adapter<RecycleMovieLi
     }
 
     public interface OnItemClickListener {
-        void onItemClick(Movie item);
+        void onItemClick(NewMovieModel item);
     }
 }

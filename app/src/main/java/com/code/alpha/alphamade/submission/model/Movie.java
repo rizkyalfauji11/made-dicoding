@@ -5,7 +5,6 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,8 +85,7 @@ public class Movie implements Parcelable {
     }
 
 
-
-    class Crew{
+    class Crew {
         private String name, job;
 
         public String getName() {
@@ -134,7 +132,7 @@ public class Movie implements Parcelable {
         this.year = in.readString();
         this.rating = in.readString();
         this.image = in.readString();
-        this.crews = new ArrayList<Crew>();
+        this.crews = new ArrayList<>();
         in.readList(this.crews, Crew.class.getClassLoader());
     }
 
